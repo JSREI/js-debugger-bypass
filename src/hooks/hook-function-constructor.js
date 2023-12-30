@@ -12,15 +12,6 @@ export function addFunctionConstructorHook() {
     const functionHolder = window.Function;
     const functionPrototypeConstructorHolder = window.Function.prototype.constructor;
     if (!isAlreadyHook(functionHolder)) {
-        
-        window.Function.prototype.constructor = function () {
-            pureArguments("Function.prototype.constructor", arguments);
-            return functionPrototypeConstructorHolder.apply(this, arguments);
-        }
-
-        window.Function.prototype.constructor.toString = function () {
-            return "function Function() { [native code] }";
-        }
 
         window.Function = function () {
             pureArguments("Function(\"debugger\").call()", arguments);
@@ -28,6 +19,15 @@ export function addFunctionConstructorHook() {
         }
 
         window.Function.toString = function () {
+            return "function Function() { [native code] }";
+        }
+
+        functionHolder.prototype.constructor = window.Function.prototype.constructor = function () {
+            pureArguments("Function.prototype.constructor", arguments);
+            return functionPrototypeConstructorHolder.apply(this, arguments);
+        }
+
+        functionHolder.prototype.constructor = window.Function.prototype.constructor.toString = function () {
             return "function Function() { [native code] }";
         }
 
