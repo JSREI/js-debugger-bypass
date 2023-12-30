@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setInterval</title>
+</head>
+<body>
+
+<script>
+
+    setInterval(function () {
+        debugger;
+    }, 100)
+
+    setInterval(function () {
+        (function () {
+        }['constructor']('debugger')())
+    }, 100);
+
+</script>
+</body>
+</html>

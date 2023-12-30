@@ -1,11 +1,11 @@
 {
-  "name": "userscript-foo",
+  "name": "js-debugger-bypass",
   "version": "0.0.1",
-  "description": "this is userscript's description",
+  "description": "用于拦截掉网页上的无限debugger断点",
   "main": "index.js",
-  "repository": "https://github.com/JSREI/userscript-template.git",
-  "namespace": "https://github.com/JSREI/userscript-template.git",
-  "document": "https://github.com/JSREI/userscript-template.git",
+  "repository": "https://github.com/JSREI/js-debugger-bypass.git",
+  "namespace": "https://github.com/JSREI/js-debugger-bypass.git",
+  "document": "https://github.com/JSREI/js-debugger-bypass.git",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch --config webpack.dev.js"
