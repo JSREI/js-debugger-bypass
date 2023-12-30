@@ -1,7 +1,7 @@
 /**
  * 用于统计观测debugger的拦截情况
  */
-class DebuggerMetric {
+export class DebuggerMetric {
 
     constructor(type, codeLocation) {
 
@@ -20,6 +20,3 @@ class DebuggerMetric {
 
 }
 
-module.exports = {
-    DebuggerMetric
-}

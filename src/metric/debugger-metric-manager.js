@@ -1,9 +1,11 @@
+import {log} from "../logger/logger";
+
 const {DebuggerMetric} = require("./debugger-metric");
 
 /**
  * 用于统一维护debugger的执行信息
  */
-class DebuggerMetricManager {
+export class DebuggerMetricManager {
 
     constructor() {
         this.metricMap = new Map();
@@ -42,13 +44,10 @@ class DebuggerMetricManager {
             return;
         }
         this.lastPrintTimestamp = new Date().getTime();
-        console.log(`debugger type ${debuggerType}, code location = ${codeLocation}, intercept count = ${metric.interceptTotal}`);
+        const msg = `debugger type ${debuggerType}, code location = ${codeLocation}, intercept count = ${metric.interceptTotal}`;
+        log(msg);
     }
 
 }
 
-const debuggerMetricManager = new DebuggerMetricManager();
-
-module.exports = {
-    debuggerMetricManager
-}
+export const debuggerMetricManager = new DebuggerMetricManager();

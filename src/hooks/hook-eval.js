@@ -1,15 +1,17 @@
 const {pureArguments} = require("../pure/pure");
 const {isAlreadyHook, setAlreadyHook} = require("./hook-flag");
 
+/**
+ * 这种类型的Hook的标识符
+ *
+ * @type {string}
+ */
 const DEBUGGER_TYPE = "eval";
 
 /**
- * 为eval添加Hook，用于拦截这种方式执行的debugger:
- *
- *  eval("debugger");
- *
+ * 为eval添加Hook，用于拦截 `eval("debugger");` 这种方式执行的debugger
  */
-function addEvalHook() {
+export function addEvalHook() {
 
     const evalHolder = window.eval;
 
@@ -30,7 +32,5 @@ function addEvalHook() {
 
 }
 
-module.exports = {
-    addEvalHook
-}
+
 

@@ -3,7 +3,7 @@
  *
  * @return {string} 定位到的用户代码的位置
  */
-function getCodeLocation() {
+export function getCodeLocation() {
     // 把调用栈一个栈帧一个栈帧的弹掉
     const stack = new Error().stack.split("\n");
     let i = 1;
@@ -19,6 +19,3 @@ function getCodeLocation() {
     return "";
 }
 
-module.exports = {
-    getCodeLocation
-}

@@ -8,13 +8,11 @@ import {addFunctionConstructorHook} from "./hook-function-constructor";
 /**
  * 把所有能加的Hook都加上
  */
-function addAllHook() {
+export function addAllHook() {
     addEvalHook();
     addSetIntervalHook();
     addFunctionConstructorHook();
 }
 
-module.exports = {
-    addAllHook
-}
+
 

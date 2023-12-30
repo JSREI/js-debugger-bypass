@@ -15,11 +15,9 @@ const ANONYMOUS_FUNC_NAME_PREFIX = "CC11001100_js_debugger_bypass_anonymous_func
  * 生成一个全局唯一的匿名函数ID
  * @returns {string}
  */
-function generateGlobalUniqFunctionName() {
+export function generateGlobalUniqFunctionName() {
     return ANONYMOUS_FUNC_NAME_PREFIX + anonymousFuncIdGenerator++;
 }
 
-module.exports = {
-    generateGlobalUniqFunctionName,
-}
+
 

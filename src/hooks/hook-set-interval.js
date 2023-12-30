@@ -8,7 +8,7 @@ import {isAlreadyHook, setAlreadyHook} from "./hook-flag";
  * setInterval(function(){debugger;},1000);
  *
  */
-function addSetIntervalHook() {
+export function addSetIntervalHook() {
 
     const setIntervalHolder = window.setInterval;
 
@@ -29,6 +29,3 @@ function addSetIntervalHook() {
 
 }
 
-module.exports = {
-    addSetIntervalHook
-}

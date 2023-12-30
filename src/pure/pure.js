@@ -12,7 +12,7 @@ const {debuggerMetricManager} = require("../metric/debugger-metric-manager");
  * @param debuggerType 被拦截的debugger类型
  * @param argumentsArray 要被清洗的参数数组，这个数组中可能会存在debugger断点之类的
  */
-function pureArguments(debuggerType, argumentsArray) {
+export function pureArguments(debuggerType, argumentsArray) {
     for (let i = 0; i < argumentsArray.length; i++) {
         try {
             argumentsArray[i] = pureObject(debuggerType, argumentsArray[i]);
@@ -74,8 +74,6 @@ function pureFunction(debuggerType, func) {
     }
 }
 
-module.exports = {
-    pureArguments
-}
+
 
 
