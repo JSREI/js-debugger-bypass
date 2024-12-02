@@ -20,11 +20,13 @@ export function addEvalHook() {
     }
 
     window.eval = function () {
+        debugger;
         pureArguments(DEBUGGER_TYPE, arguments);
         return evalHolder.apply(this, arguments);
     }
 
     window.eval.toString = function () {
+        debugger;
         return "function eval() { [native code] }";
     }
 

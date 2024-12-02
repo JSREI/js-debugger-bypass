@@ -9,7 +9,7 @@ export function getCodeLocation() {
     let i = 1;
     let last = "";
     for (let i = stack.length - 1; i >= 0; i--) {
-        // 这个字符串是油猴的Chrome扩展id号
+        // 这个字符串是油猴的Chrome扩展id号，用这个来作为标识符，如果使用的是其它扩展的话需要把这里的标记位给修改掉
         if (stack[i].indexOf("dhdgffkkebhmkfjojejmpbldmpobfkfo") !== -1) {
             // 去除可能会存在的空格，观感会稍微好一些
             return last.trim();

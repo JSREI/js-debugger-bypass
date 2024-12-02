@@ -14,7 +14,7 @@ export function isAlreadyHook(object) {
     if (!object) {
         return false;
     }
-    return object[ALREADY_HOOK_FLAG_ATTRIBUTE_NAME];
+    return object[ALREADY_HOOK_FLAG_ATTRIBUTE_NAME] === true;
 }
 
 /**
