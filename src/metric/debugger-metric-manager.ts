@@ -1,14 +1,16 @@
-import {log} from "../logger/logger";
-
-const {DebuggerMetric} = require("./debugger-metric");
+import { log } from "../logger/logger";
+import { DebuggerMetric } from "./debugger-metric";
 
 /**
  * 用于统一维护debugger的执行信息
  */
 export class DebuggerMetricManager {
+    private metricMap: Map<string, DebuggerMetric>;
+    private lastPrintTimestamp: number;
 
     constructor() {
         this.metricMap = new Map();
+        this.lastPrintTimestamp = 0;
     }
 
     /**
@@ -16,13 +18,12 @@ export class DebuggerMetricManager {
      *
      * @param debuggerType debugger的类型
      * @param codeLocation 代码的位置
-     * @returns {any}
      */
-    getDebuggerMetric(debuggerType, codeLocation) {
+    private getDebuggerMetric(debuggerType: string, codeLocation: string): DebuggerMetric {
         const mapKey = debuggerType + "|" + codeLocation;
         let metric = this.metricMap.get(mapKey);
         if (metric == null) {
-            metric = new DebuggerMetric(codeLocation);
+            metric = new DebuggerMetric(debuggerType, codeLocation);
             this.metricMap.set(mapKey, metric);
         }
         return metric;
@@ -34,10 +35,8 @@ export class DebuggerMetricManager {
      * @param debuggerType 拦截到的是什么类型的debugger
      * @param codeLocation 是在用户代码的什么位置拦截到debugger
      */
-    reportDebuggerMetric(debuggerType, codeLocation) {
-
+    reportDebuggerMetric(debuggerType: string, codeLocation: string): void {
         const metric = this.getDebuggerMetric(debuggerType, codeLocation);
-
         metric.interceptTotal++;
 
         if (new Date().getTime() - this.lastPrintTimestamp < 1000 * 3) {
@@ -47,7 +46,6 @@ export class DebuggerMetricManager {
         const msg = `debugger type ${debuggerType}, code location = ${codeLocation}, intercept count = ${metric.interceptTotal}`;
         log(msg);
     }
-
 }
 
-export const debuggerMetricManager = new DebuggerMetricManager();
+export const debuggerMetricManager = new DebuggerMetricManager(); 
