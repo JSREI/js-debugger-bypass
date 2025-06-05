@@ -70,7 +70,7 @@ function pureFunction(debuggerType: string, func: Function): Function {
         // 给函数一个随机的名字，替换掉原来的函数
         puredFuncJsCode = puredFuncJsCode.replace(/^function\(\)/, `function ${generateGlobalUniqId()}()`);
         // TODO 2024-09-17 14:20:35 临时调试
-        debugger;
+        // debugger;
         return Function(puredFuncJsCode);
     }
 } 

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "build:dev": "webpack --config webpack.config.js --mode development",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "generate-dev-header": "node scripts/generate-dev-header.js"
   },
   "keywords": ["debugger", "bypass", "userscript"],
   "author": "CC11001100",
