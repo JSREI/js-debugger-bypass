@@ -39,6 +39,45 @@ export function createSectionTitle(title: string, tooltip?: string): HTMLElement
         const tooltipElement = createElement('span', { className: 'settings-tooltip' }, [tooltip]);
         helpIcon.appendChild(tooltipElement);
         titleElement.appendChild(helpIcon);
+        
+        // 动态调整提示气泡位置
+        helpIcon.addEventListener('mouseenter', () => {
+            // 重置所有位置类
+            tooltipElement.classList.remove('position-left', 'position-top');
+            
+            // 获取元素位置和尺寸
+            const helpIconRect = helpIcon.getBoundingClientRect();
+            const tooltipRect = tooltipElement.getBoundingClientRect();
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            // 判断右侧空间
+            if (helpIconRect.right + tooltipRect.width + 16 > windowWidth) {
+                // 右侧空间不足，尝试左侧
+                if (helpIconRect.left - tooltipRect.width - 16 > 0) {
+                    // 左侧空间充足
+                    tooltipElement.classList.add('position-left');
+                } else {
+                    // 左右空间都不足，显示在顶部中心
+                    tooltipElement.classList.add('position-top');
+                }
+            }
+            
+            // 检查是否在顶部或底部溢出
+            setTimeout(() => {
+                const newTooltipRect = tooltipElement.getBoundingClientRect();
+                if (newTooltipRect.top < 0) {
+                    // 顶部溢出，调整到底部
+                    tooltipElement.style.top = 'auto';
+                    tooltipElement.style.bottom = '-80px';
+                } else if (newTooltipRect.bottom > windowHeight) {
+                    // 底部溢出，调整到顶部
+                    tooltipElement.style.top = 'auto';
+                    tooltipElement.style.bottom = '100%';
+                    tooltipElement.style.marginBottom = '8px';
+                }
+            }, 0);
+        });
     }
     
     return titleElement;

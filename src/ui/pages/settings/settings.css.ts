@@ -138,9 +138,7 @@ export const settingsCSS = `
     
     .settings-tooltip {
         position: absolute;
-        left: 100%;
         top: 0;
-        margin-left: ${spacing.sm};
         background-color: ${colors.dark};
         color: ${colors.white};
         padding: ${spacing.md};
@@ -156,12 +154,47 @@ export const settingsCSS = `
         pointer-events: none;
         box-shadow: ${shadows.medium};
         transform: translateY(-5px);
+        /* 智能判断位置，默认向右显示 */
+        left: 100%;
+        margin-left: ${spacing.sm};
     }
     
+    /* 确保提示不溢出可视区域 */
+    @media (max-width: 800px) {
+        .settings-tooltip {
+            /* 在窄屏幕上显示在顶部而非右侧 */
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: 100%;
+            margin-bottom: ${spacing.sm};
+            margin-left: 0;
+            transform: translateY(0);
+            width: 200px;
+        }
+    }
+    
+    /* 添加悬停时的样式 */
     .settings-help-icon:hover .settings-tooltip {
         visibility: visible;
         opacity: 1;
         transform: translateY(0);
+    }
+    
+    /* JavaScript提供的辅助类，用于位置调整 */
+    .settings-tooltip.position-left {
+        left: auto;
+        right: 100%;
+        margin-left: 0;
+        margin-right: ${spacing.sm};
+    }
+    
+    .settings-tooltip.position-top {
+        left: 50%;
+        top: auto;
+        bottom: 100%;
+        margin-left: -140px; /* 宽度的一半 */
+        margin-bottom: ${spacing.sm};
     }
     
     /* 设置项样式 */
