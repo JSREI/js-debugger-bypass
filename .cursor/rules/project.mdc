@@ -1,0 +1,10 @@
+---
+description: 项目架构
+globs: *
+alwaysApply: false
+---
+
+- src/logger 是统一的日志模块，需要打印内容时请使用统一的日志模块来打印 
+
+
+
